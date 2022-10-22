@@ -8,6 +8,9 @@ export default component$(() => {
             <h1>
                 Welcome to Qwik <span class="lightning">⚡️</span>
             </h1>
+            <h1>
+                Hello World! <span class="lightning">⚡️</span>
+            </h1>
 
             <ul>
                 <li>
