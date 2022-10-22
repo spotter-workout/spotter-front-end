@@ -14,11 +14,13 @@
         "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
         "fmt": "prettier --write .",
         "fmt.check": "prettier --check .",
-        "lint": "eslint \"src/**/*.ts*\"",
         "preview": "qwik build preview && vite preview --open",
         "start": "vite --open --mode ssr",
         "qwik": "qwik",
-        "typechecks": "tsc --noEmit"
+        "eslint": "eslint \"src/**/*.ts*\"",
+        "typechecks": "tsc --noEmit",
+        "lint": "yarn eslint && yarn typechecks",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@builder.io/qwik": "0.11.1",
@@ -33,10 +35,20 @@
         "eslint-plugin-n": "^15.0.0",
         "eslint-plugin-promise": "^6.0.0",
         "eslint-plugin-qwik": "0.11.1",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.0.3",
         "node-fetch": "3.2.10",
         "prettier": "2.7.1",
         "typescript": "*",
         "vite": "3.1.7",
         "vite-tsconfig-paths": "3.5.0"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "prettier --write",
+            "eslint --fix",
+            "bash -c tsc --noEmit",
+            "git add"
+        ]
     }
 }
